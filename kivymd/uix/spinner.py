@@ -21,6 +21,7 @@ Usage
             size: dp(46), dp(46)
             pos_hint: {'center_x': .5, 'center_y': .5}
             active: True if check.active else False
+            thickness: dp(2.25)
 
         MDCheckbox:
             id: check
@@ -84,6 +85,7 @@ from kivy.properties import (
     NumericProperty,
 )
 from kivy.uix.widget import Widget
+from kivy.metrics import dp
 
 from kivymd.theming import ThemableBehavior
 
@@ -103,7 +105,7 @@ Builder.load_string(
             circle: self.center_x, self.center_y, self.width / 2,\
             self._angle_start, self._angle_end
             cap: 'square'
-            width: dp(2.25)
+            width: self.thickness
     canvas.after:
         PopMatrix
 
@@ -159,6 +161,14 @@ class MDSpinner(ThemableBehavior, Widget):
 
     :attr:`palette` is a :class:`~kivy.properties.ListProperty`
     and defaults to `[]`.
+    """
+
+    thickness = NumericProperty(dp(2.25))
+    """
+    Spinner thickness value
+
+    :attr:`thickness` is a :class:`~kivy.properties.NumericProperty`
+    and defaults to `2.25`.
     """
 
     _alpha = NumericProperty(0)
