@@ -175,11 +175,6 @@ class MDSpinner(ThemableBehavior, Widget):
         self._alpha_anim_out.bind(on_complete=self._reset)
         self.theme_cls.bind(primary_color=self._update_color)
 
-        if self.determinate:
-            self._start_determinate()
-        else:
-            self._start_loop()
-
     def _update_color(self, *args):
         self.color = self.theme_cls.primary_color
 
@@ -263,3 +258,13 @@ class MDSpinner(ThemableBehavior, Widget):
                 self._start_determinate()
             else:
                 self._start_loop()
+
+    def on_kv_post(self, base_widget):
+        if not self.active:
+            return
+
+        if self.determinate:
+            self._start_determinate()
+        else:
+            self._start_loop()
+
